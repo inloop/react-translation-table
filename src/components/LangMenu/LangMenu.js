@@ -2,20 +2,30 @@ import React, { Component } from 'react'
 
 export default class LangMenu extends Component {
   static propTypes = {
-    langMap: React.PropTypes.any
+    dictionary: React.PropTypes.object,
+    changeActive: React.PropTypes.func,
+    active: React.PropTypes.string
   }
 
   render() {
-    console.log('langMap', this.props.langMap)
+    const { dictionary, changeActive, active } = this.props
+
+    const list = []
+
+    for (const key in dictionary) {
+      if (dictionary.hasOwnProperty(key)) {
+        list.push(
+          <li key={key} style={{ color: (active === key ? 'red' : 'black') }}>
+            <button type='button' onClick={() => changeActive(key)}>{key}</button>
+          </li>
+        )
+      }
+    }
 
     return (
       <ul>
         LeftMenu
-        {this.props.langMap.map((item, index) =>
-          <li key={index}>
-            {item}
-          </li>
-        )}
+        {list}
       </ul>
     )
   }

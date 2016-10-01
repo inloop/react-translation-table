@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import { LangMenu } from './components'
 
 export default class App extends Component {
-
   state = {
-    langMap: ['en', 'cs'],
+    active: 'en',
     dictionary: {
       en: {
         greeting: 'Hello'
@@ -15,11 +14,17 @@ export default class App extends Component {
     }
   }
 
+  changeActive = key => this.setState({ active: key })
+
   render() {
     return (
       <div>
         App
-        <LangMenu langMap={this.state.langMap} />
+        <LangMenu
+          active={this.state.active}
+          dictionary={this.state.dictionary}
+          changeActive={this.changeActive}
+        />
       </div>
     )
   }
