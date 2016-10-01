@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { LangMenu } from './components'
+import { LangMenu, TermsList } from './components'
 
 export default class App extends Component {
   state = {
@@ -24,6 +24,9 @@ export default class App extends Component {
           active={this.state.active}
           dictionary={this.state.dictionary}
           changeActive={this.changeActive}
+        />
+        <TermsList
+          terms={this.state.dictionary[this.state.active]}
         />
       </div>
     )
